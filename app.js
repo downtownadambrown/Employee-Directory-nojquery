@@ -27,6 +27,7 @@ const addUser = function () {
     employeeList.push(newUser);
     renderView();
     clearFields();
+    hideBars();
 };
 
 const verifyUser = function () {
@@ -39,6 +40,7 @@ const verifyUser = function () {
     // User exists
     else {
         contentRef.html(`<p>Yes -- ${verifyName} exists</p>`);
+        hideBars();
     }
 };
 
@@ -56,6 +58,7 @@ const updateUser = function () {
         employeeList[locateUserByName(updateName)].phoneNum = updatePhoneNumber;
         renderView();
         clearFields();
+        hideBars();
     }
 };
 
@@ -70,7 +73,7 @@ const deleteUser = function() {
         employeeList.splice(userindex, 1);
         renderView();
         clearFields();
-        console.log('in the del');
+        hideBars();
     }
 };
 
@@ -94,6 +97,21 @@ const renderminiView = function() {
     contentRef.append(finalHTML);
 };
 
+const hideBars = function() {
+    document.getElementById("nameField").style.display = "none";
+    document.getElementById("officePhoneField").style.display = "none";
+    document.getElementById("phoneNumField").style.display = "none";
+    document.getElementById("buttondiv").style.display = "none";
+}
+
+const showBars = function() {
+    document.getElementById("nameField").style.display = "inline";
+    document.getElementById("officePhoneField").style.display = "inline";
+    document.getElementById("phoneNumField").style.display = "inline";
+    document.getElementById("buttondiv").style.display = "inline";
+}
+
+
 function setSearchButton(cb){
     clearFields();
     $('#buttondiv').empty(); //delete the existing button and event listener if there is one
@@ -108,17 +126,11 @@ function eventHandler(e) {
     clearFields();
 
     if (state === 'view') {
-        document.getElementById("nameField").style.display = "none";
-        document.getElementById("officePhoneField").style.display = "none";
-        document.getElementById("phoneNumField").style.display = "none";
-        document.getElementById("buttondiv").style.display = "none";
+        hideBars();
         renderView();
     }
     else if (state === 'add') {
-        document.getElementById("nameField").style.display = "inline";
-        document.getElementById("officePhoneField").style.display = "inline";
-        document.getElementById("phoneNumField").style.display = "inline";
-        document.getElementById("buttondiv").style.display = "inline";
+        showBars();
         setSearchButton(addUser);        
     }
     else if (state === 'verify') {
@@ -129,10 +141,7 @@ function eventHandler(e) {
         setSearchButton(verifyUser);
     }
     else if (state === 'update') {
-        document.getElementById("nameField").style.display = "inline";
-        document.getElementById("officePhoneField").style.display = "inline";
-        document.getElementById("phoneNumField").style.display = "inline";
-        document.getElementById("buttondiv").style.display = "inline";
+        showBars();
         setSearchButton(updateUser);
         contentRef.html('<p>Please enter the name of whom you would like to update.  Then enter their new Office # and Phone #</p>');
         renderminiView();
