@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Employee Directory</title>
+    <link rel="stylesheet" href="reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="container-left">
+    <header>
+        <img src="address-book-icon.png" id="nav-brand">
+        <nav>
+            <ul id="navList">
+                <li><a href="#" id="view">VIEW</a></li>
+                <li><a href="#" id="add">ADD</a></li>
+                <li><a href="#" id="verify">VERIFY</a></li>
+                <li><a href="#" id="update">UPDATE</a></li>
+                <li><a href="#" id="delete">DELETE</a></li>
+            </ul>
+        </nav>
+    </header>
+</div>
+
+<div class="container-right">
+    <section class="searchbar">
+        <div class="inputWrapper">
+            <input type="text" class="field field1" id="nameField" aria-describedby="searchUser"
+                   placeholder="Enter Name">
+            <input type="phone" class="field field2" id="officePhoneField" aria-describedby="searchUser"
+                   placeholder="Enter Office Number">
+            <input type="text" class="field field3" id="phoneNumField" aria-describedby="searchUser"
+                   placeholder="Enter Phone Number">
+            <div id="buttondiv"></div>
+        </div>
+    </section>
+    <main>
+
+    </main>
+</div>
+
+<script src="dom.js"></script>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>-->
+<script src="employeeList.js"></script>
+<script src="app.js"></script>
+
+</body>
+
+</html>

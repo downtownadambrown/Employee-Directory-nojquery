@@ -1,0 +1,158 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.container-left {
+    width: 25%;
+    height: 100%;
+    background-color: #27241f;
+    color: #FFF;
+    float: left;
+    margin: 0;
+}
+
+.container-right {
+    width: 75%;
+    height: 100%;
+    float: right;
+    margin: 0;
+    background-color: #5c5c5c;
+
+}
+
+header {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#nav-brand {
+    height: 75px;
+    width: 75px;
+    margin-left: 5px;
+}
+
+ul li{
+    padding: 10px 0px 10px 0px;
+    font-family: 'Inconsolata', monospace;
+    letter-spacing: 2px;
+}
+
+.searchbar {
+    padding: 0px;
+    padding-top: 5px;
+    width: 100%;
+    min-height: 46px;
+    flex-direction: row;
+    display: flex;
+}
+
+main {
+    width: 100%;
+}
+.inputWrapper {
+    width: 80%;
+    margin: 0 auto;
+}
+.field {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 0;
+    display: hidden;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #27241f;
+    color: white;
+    font-family: 'Inconsolata', monospace;
+}
+
+.fa-search {
+    height: 100%;
+}
+
+input {
+    display: inline;
+}
+
+p {
+    font-family: 'Inconsolata', monospace;
+    font-size: 20px;
+    padding: 5px;
+}
+
+#buttondiv {
+    width: 41px;
+    height: 41px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 3px;
+    box-sizing: border-box;
+    float: right;
+}
+
+#queryButton {
+    height: 100%;
+    width: 100%;
+    float: right;
+    background-color: #27241f;
+    color: white;
+
+}
+
+.user {
+    background-color: grey;
+    margin: 15px;
+    padding: 15px;
+    width: 200px;
+    float:left;
+}
+
+h2 {
+    font-family: 'Inconsolata', monospace;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+a {
+    color: #FFF;
+    text-decoration: none !important;
+}
+
+/* 1102 */
+@media screen and (max-width:500px) {
+    input {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 5px;
+    }
+
+    .searchbar {
+        width: 95%;
+        flex-direction: column;
+    }
+
+    .inputWrapper {
+        float: left;
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    #queryButton {
+        position: fixed;
+        right:0;
+        float: right;
+        height: 130px;
+    }
+}
