@@ -39,10 +39,17 @@ const verifyUser = function () {
     }
     // User exists
     else {
-        contentRef.html(`<p>Yes -- ${verifyName} exists</p>`);
+        contentRef.html(`<p>Yes -- ${verifyName} exists</p><div class="user"><h2>Name: ${employeeList[locateUserByName(verifyName)].name}</h2><h2>Office #: ${employeeList[locateUserByName(verifyName)].officeNum}</h2><h2>Phone #: ${employeeList[locateUserByName(verifyName)].phoneNum}</h2></div>`);
         hideBars();
     }
 };
+
+function flashUser() {
+    const userName = $('#nameField').val();
+    const userIndex = locateUserByName(userName);
+    const targetDiv = $(`#user${userIndex}`);
+        
+}
 
 const updateUser = function () {
     const updateName = $('#nameField').val();
@@ -57,6 +64,7 @@ const updateUser = function () {
         employeeList[locateUserByName(updateName)].officeNum = updateOfficeNumber;
         employeeList[locateUserByName(updateName)].phoneNum = updatePhoneNumber;
         renderView();
+        var myTimer = setInterval(flashUser, 1000);
         clearFields();
         hideBars();
     }
@@ -81,7 +89,7 @@ const renderView = function() {
     let finalHTML = ``;
 
     for (let i = 0; i < employeeList.length; i++) {
-        finalHTML += `<div class="user"><h2>Name: ${employeeList[i].name}</h2><h2>Office #: ${employeeList[i].officeNum}</h2><h2>Phone #: ${employeeList[i].phoneNum}</h2></div>`;
+        finalHTML += `<div class="user" id="user${i}"><h2>Name: ${employeeList[i].name}</h2><h2>Office #: ${employeeList[i].officeNum}</h2><h2>Phone #: ${employeeList[i].phoneNum}</h2></div>`;
     }
 
     contentRef.html(finalHTML);

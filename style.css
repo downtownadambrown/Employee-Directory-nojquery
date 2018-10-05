@@ -88,13 +88,26 @@ p {
     font-family: 'Inconsolata', monospace;
     font-size: 20px;
     padding: 5px;
+    margin-left: 10px;
+}
+
+#nameField{
+    display: none;
+}
+
+#officePhoneField{
+    display: none;
+}
+
+#phoneNumField{
+    display: none;
 }
 
 #buttondiv {
     width: 41px;
     height: 41px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    /*border: 1px solid #ccc;
+    border-radius: 4px;*/
     margin-left: 3px;
     box-sizing: border-box;
     float: right;
