@@ -14,6 +14,16 @@ const locateUserByName = function(){
     return -1; // -1 is returned when the user does not exist
 };
 
+const locateUserByNameSpecial = function(username){
+
+    for (let i = 0; i < employeeList.length; i++) {
+        if (employeeList[i].name === username) {
+            return i;// returns index location of the user in employeeList
+        }
+    }
+    return -1; // -1 is returned when the user does not exist
+};
+
 const addUser = function () {
     const newName = $('#nameField').val();
     const newOfficeNum = $('#officePhoneField').val();
@@ -33,22 +43,58 @@ const addUser = function () {
 const verifyUser = function () {
     let verifyName = $('#nameField').val();
 
-    // User does not exist -> Returns false
+    // User does not exist -> Returns -1
     if (locateUserByName(verifyName) === -1) {
         contentRef.html(`<p>Sorry -- ${verifyName} does not exist.  Please check to see that you typed their name correctly.</p>`);
     }
-    // User exists
+    // User exists -> Returns the index
     else {
         contentRef.html(`<p>Yes -- ${verifyName} exists</p><div class="user"><h2>Name: ${employeeList[locateUserByName(verifyName)].name}</h2><h2>Office #: ${employeeList[locateUserByName(verifyName)].officeNum}</h2><h2>Phone #: ${employeeList[locateUserByName(verifyName)].phoneNum}</h2></div>`);
         hideBars();
     }
 };
 
+function function_opacity(opacity_value, fade_in_or_fade_out) { // fade_in_or_out - 0 = fade in, 1 = fade out
+    const userIndex = locateUserByNameSpecial(activeName);
+    const specialName = `user${userIndex}`;
+    let fading_div = document.getElementById(specialName);
+
+    fading_div.style.opacity = opacity_value / 100;
+    fading_div.style.filter = 'alpha(opacity=' + opacity_value + ')';
+    if (fade_in_or_fade_out == 'in' && opacity_value == 100) {
+        fading_div.style.display = 'block';
+    }
+    if (fade_in_or_fade_out == 'in' && opacity_value == 1) {
+        done = true;
+    }
+    if (fade_in_or_fade_out == 'out' && opacity_value == 100) {
+        fading_div.style.display = 'none';
+        done = true;
+    }
+    
+}
+
 function flashUser() {
     const userName = $('#nameField').val();
-    const userIndex = locateUserByName(userName);
-    const targetDiv = $(`#user${userIndex}`);
-        
+    const userIndex = `user` + locateUserByNameSpecial(activeName);
+    let fading_div = document.getElementById(userIndex);
+    const tempOpac = document.getElementById(userIndex).style.opacity;
+
+    done = false;
+    for (var i = 100; i >= 1; i--) {
+        setTimeout((function(x){
+           return function(){
+              function_opacity(x, 'in');
+           };
+        })(i), (i - 100) * -1 * 5);
+     }
+     console.log(userIndex);
+     //document.getElementById(userIndex).style.opacity = tempOpac;
+     setTimeout(function(){
+        document.getElementById(userIndex).style.opacity = 1;
+        document.getElementById(userIndex).style.display = 'block';
+     }, 500);
+ 
 }
 
 const updateUser = function () {
@@ -64,7 +110,8 @@ const updateUser = function () {
         employeeList[locateUserByName(updateName)].officeNum = updateOfficeNumber;
         employeeList[locateUserByName(updateName)].phoneNum = updatePhoneNumber;
         renderView();
-        var myTimer = setInterval(flashUser, 1000);
+        activeName = $('#nameField').val();
+        flashUser();
         clearFields();
         hideBars();
     }
@@ -165,11 +212,14 @@ function eventHandler(e) {
     }
 }
 
+//Global Variables
 const navList = document.querySelectorAll('li');
 const nameQuery = $('#nameField');
 const officePhoneQuery = $('#officePhoneField');
 const phoneNumQuery = $('#phoneNumField');
 const queryButtonRef = $('#queryButton');
 const contentRef = $('main');
+let done = true; //used for fadeout
+var activeName = "";
 
 $('#navList').on('click', eventHandler, false);
