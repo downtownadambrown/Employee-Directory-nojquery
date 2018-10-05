@@ -7,3 +7,8 @@ The goal of this project was to create a web application that simulates that of 
 * Update a user's personal information
 * Remove a user from the directory
 * View the current directory
+
+Libraries used include:
+* DOM.js - an ultra-minified version of jQuery
+* Clear.css - a CSS3 browser default reset stylesheet
+* APP.js - all of the javascript logic for the page
